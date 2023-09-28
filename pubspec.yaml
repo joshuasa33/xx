@@ -1,0 +1,59 @@
+name: testre
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.2 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+  firebase_core: ^2.10.0
+  firebase_auth: ^4.4.2
+  http: ^0.13.5
+  device_info_plus: ^8.2.0
+  platform_device_id: ^1.0.1
+  uuid: ^3.0.7
+  connectivity_plus: ^3.0.4
+  shared_preferences: ^2.1.0
+  flutter_udid: ^2.0.1
+  web_socket_channel: ^2.4.0
+  auto_size_text: ^3.0.0
+  lottie: ^2.3.2
+  purchases_flutter: ^5.7.0
+  google_mobile_ads: ^3.0.0
+  provider: ^6.0.5
+  google_fonts: ^4.0.4
+  model_viewer_plus: ^1.7.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+
+flutter:
+  fonts:
+    - family: TeqtoDemo
+      fonts:
+        - asset: fonts/Teqto-Demo.otf
+    - family: Cyberthic
+      fonts:
+        - asset: fonts/Cyberthic.otf
+    - family: Goblin
+      fonts:
+        - asset: Fonts/GlitchGoblin.ttf
+        
+  uses-material-design: true
+  assets:
+    - lib/images/
+    - lib/Icons/
+    - 3DModels/
+    - 3DScreenShot/
+    - Backgrounds/
