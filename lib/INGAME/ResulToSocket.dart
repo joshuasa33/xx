@@ -36,20 +36,20 @@ void resultToWebsocket(String playerGuid, String result, String gameguid,
         print(message.toString());
         if (message.toString().contains(win)) {
           print("win");
-          context.read<GameFinish>().getErgebnis(win);
+          context.read<GameFinish>().getErgebnis("Gewonnen");
           return;
         }
         if (message.toString().contains(lose)) {
-          context.read<GameFinish>().getErgebnis(lose);
+          context.read<GameFinish>().getErgebnis("Verloren");
           return print("lose");
         }
         if (message.toString().contains(draw)) {
-          context.read<GameFinish>().getErgebnis(draw);
+          context.read<GameFinish>().getErgebnis("Unentschieden");
           print("draw +/n " * 7);
           return;
         }
         if (lasttry == true) {
-          context.read<GameFinish>().getErgebnis("Connection Error");
+          context.read<GameFinish>().getErgebnis("Netzwerkfehler");
         }
       }
       print("close connection" + message.toString());
