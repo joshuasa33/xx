@@ -52,6 +52,10 @@ void main() async {
         ChangeNotifierProvider(create: (context) => WhileShopping()),
         ChangeNotifierProvider(create: (context) => PopupError()),
         ChangeNotifierProvider(create: (context) => showError()),
+        ChangeNotifierProvider(create: (context) => ModelPathEnemy()),
+        ChangeNotifierProvider(create: (context) => BGPathEnemy()),
+        ChangeNotifierProvider(create: (context) => BGPathEnemy()),
+        ChangeNotifierProvider(create: (context) => enemyName()),
       ],
       child: MyApp(
         playerguid: getplayerguid,
@@ -65,7 +69,7 @@ class MyApp extends StatelessWidget {
   final String playerguid;
   final bool firsttime;
 
-  MyApp({Key? key, required this.playerguid, required this.firsttime})
+  const MyApp({Key? key, required this.playerguid, required this.firsttime})
       : super(key: key);
 
   @override
@@ -73,7 +77,7 @@ class MyApp extends StatelessWidget {
     // Navigate to the appropriate page based on the value of `firsttime`
     Widget nextPage;
     if (firsttime) {
-      nextPage = Login();
+      nextPage = const Login();
     } else {
       //Test purpose
       CFragen obj = CFragen(
@@ -92,7 +96,7 @@ class MyApp extends StatelessWidget {
       listobj.add(obj);
 
       //End
-      nextPage = GamePage();
+      nextPage = const GamePage();
     }
 
     return MaterialApp(
@@ -103,8 +107,8 @@ class MyApp extends StatelessWidget {
       ),
       home: nextPage,
       routes: {
-        '/inGame': (context) => InGame(),
-        '/gamePage': (context) => GamePage(),
+        '/inGame': (context) => const InGame(),
+        '/gamePage': (context) => const GamePage(),
       },
     );
   }

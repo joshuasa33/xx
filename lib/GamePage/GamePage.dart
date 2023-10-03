@@ -48,13 +48,13 @@ class _GamePageState extends State<GamePage> {
           PageView(
             onPageChanged: (value) {
               if (context.read<SearchSocket>().state == true) {
-                connectToWebSocket("", "", context, close: true);
+                connectToWebSocket("", "", context, "", "", "", close: true);
               }
               context.read<GamePageIndex>().changeIndex(index);
               setState(() {
                 passindex = value;
               });
-              print("changed" + value.toString());
+              print("changed$value");
             },
             controller: context.read<PageViewIndex>()._pageController,
             children: const [
@@ -76,7 +76,7 @@ class _GamePageState extends State<GamePage> {
 
           Visibility(
               visible: context.watch<showError>().showText,
-              child: erroTextOverlay()),
+              child: const erroTextOverlay()),
         ]),
       ),
     );
@@ -93,11 +93,12 @@ class GamePageIndex extends ChangeNotifier {
 }
 
 class PageViewIndex extends ChangeNotifier {
-  PageController _pageController = PageController(initialPage: 2);
+  final PageController _pageController = PageController(initialPage: 2);
 
   void changeIndex(getindex) {
     _pageController.animateToPage(getindex,
-        duration: Duration(milliseconds: 350), curve: Curves.easeInToLinear);
+        duration: const Duration(milliseconds: 350),
+        curve: Curves.easeInToLinear);
     notifyListeners();
   }
 }

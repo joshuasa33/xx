@@ -29,7 +29,7 @@ void resultToWebsocket(String playerGuid, String result, String gameguid,
     print('WebSocket Connected');
 
     _channel?.stream.listen((message) {
-      print('Ready To Proceed Result' + message.toString());
+      print('Ready To Proceed Result$message');
       _channel!.sink.close();
       if (message.toString().contains(gameOverIdentefier)) {
         context.read<GameFinish>().setTrue();
@@ -52,11 +52,11 @@ void resultToWebsocket(String playerGuid, String result, String gameguid,
           context.read<GameFinish>().getErgebnis("Netzwerkfehler");
         }
       }
-      print("close connection" + message.toString());
+      print("close connection$message");
     }, onDone: () {
       print("Done");
     });
   } catch (e) {
-    print("Error resultToWS" + e.toString());
+    print("Error resultToWS$e");
   } finally {}
 }

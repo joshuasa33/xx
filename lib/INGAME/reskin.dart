@@ -36,7 +36,7 @@ class ReSkin extends StatefulWidget {
 class _ReSkinState extends State<ReSkin> {
   void _startCountDown() {
     timeLeft = 60;
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       if (mounted) {
         setState(() {
           timeLeft--;
@@ -60,7 +60,7 @@ class _ReSkinState extends State<ReSkin> {
 
   void lastCounterReTry() {
     int lastCounterTimeLeft = 6;
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       if (mounted) {
         lastCounterTimeLeft--;
         print(lastCounterTimeLeft);
@@ -77,10 +77,10 @@ class _ReSkinState extends State<ReSkin> {
   }
 
   void falldone() async {
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     GameFinish gameFinish = GameFinish();
     String ergebnisValue = gameFinish.ergebnis;
-    print(ergebnisValue + ":Das Hier");
+    print("$ergebnisValue:Das Hier");
     if (mounted) {
       setState(() {
         alldone = true;
@@ -128,16 +128,32 @@ class _ReSkinState extends State<ReSkin> {
           setState(() {
             canAnswer = false;
             print("falsch re");
+            if (widget.CFragenList![index].Antwort1 ==
+                widget.CFragenList![index].RichtigeAntwort) {
+              colors[0] = Colors.green;
+            }
+            if (widget.CFragenList![index].Antwort2 ==
+                widget.CFragenList![index].RichtigeAntwort) {
+              colors[1] = Colors.green;
+            }
+            if (widget.CFragenList![index].Antwort3 ==
+                widget.CFragenList![index].RichtigeAntwort) {
+              colors[2] = Colors.green;
+            }
+            if (widget.CFragenList![index].Antwort4 ==
+                widget.CFragenList![index].RichtigeAntwort) {
+              colors[3] = Colors.green;
+            }
             colors[colorindex] = Colors.red;
           });
         }
       }
 
-      await Future.delayed(Duration(milliseconds: 2000));
+      await Future.delayed(const Duration(milliseconds: 2000));
       if (mounted) {
         setState(() {
           for (int i = 0; i < colors.length; i++) {
-            colors[i] = Color.fromRGBO(73, 255, 200, 1);
+            colors[i] = const Color.fromRGBO(73, 255, 200, 1);
           }
           if (index < 3) {
             index++;
@@ -161,44 +177,17 @@ class _ReSkinState extends State<ReSkin> {
   bool retriveResult = false;
   bool alldone = false;
   List<Color> colors = [
-    Color.fromRGBO(73, 255, 200, 1),
-    Color.fromRGBO(73, 255, 200, 1),
-    Color.fromRGBO(73, 255, 200, 1),
-    Color.fromRGBO(73, 255, 200, 1)
+    const Color.fromRGBO(73, 255, 200, 1),
+    const Color.fromRGBO(73, 255, 200, 1),
+    const Color.fromRGBO(73, 255, 200, 1),
+    const Color.fromRGBO(73, 255, 200, 1)
   ];
-  String enemyChar = "3DModels/Pilzi.glb";
-  String enemyBG = "Backgrounds/BG01.jpg";
+
   @override
-  void getRandChar() {
-    List<String> chars = [
-      "3DModels/Pilzi.glb",
-      "3DModels/Assasin.glb",
-      "3DModels/BlueDuo.glb",
-      "3DModels/ColorDuo.glb",
-      "3DModels/DeepSea.glb",
-      "3DModels/FnFighter.glb",
-      "3DModels/thefuture.glb"
-    ];
-    int randomIndex = Random().nextInt(chars.length);
-    enemyChar = chars[randomIndex];
-
-    List<String> BGs = [
-      "Backgrounds/BG01.jpg",
-      "Backgrounds/BG02.jpg",
-      "Backgrounds/BG03.jpg",
-      "Backgrounds/BG04.jpg",
-      "Backgrounds/BG05.jpg",
-      "Backgrounds/BG06.jpg",
-      "Backgrounds/BG00.jpg"
-    ];
-    randomIndex = Random().nextInt(BGs.length);
-    enemyBG = BGs[randomIndex];
-  }
-
+  @override
   void initState() {
     _startCountDown();
     //Test State
-    getRandChar();
     //Testend
     canAnswer = true;
     gameover = false;
@@ -218,6 +207,7 @@ class _ReSkinState extends State<ReSkin> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     double maxWidth = MediaQuery.of(context).size.width;
     double maxHeight = MediaQuery.of(context).size.height;
@@ -235,12 +225,12 @@ class _ReSkinState extends State<ReSkin> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(
                       maxWidth * 0.065, maxHeight * 0.07, 0, 0),
-                  child: Container(
+                  child: SizedBox(
                     width: maxWidth * 0.35,
-                    height: maxHeight * 0.15,
+                    height: maxHeight * 0.165,
                     child: Stack(
                       children: [
-                        Container(
+                        SizedBox(
                           width: maxWidth,
                           height: maxHeight,
                           child: Image.asset(
@@ -250,7 +240,7 @@ class _ReSkinState extends State<ReSkin> {
                         ),
                         Stack(
                           children: [
-                            Container(
+                            SizedBox(
                               width: maxWidth,
                               height: maxHeight,
                               child: Image.asset(
@@ -258,15 +248,38 @@ class _ReSkinState extends State<ReSkin> {
                                 fit: BoxFit.fill,
                               ),
                             ),
-                            ModelViewer(
-                              src: context.watch<ModelPath>().modelPath,
-                              alt: 'My 3D Model',
-                              ar: false, // Enable AR mode
-                              autoRotate: false, // Enable auto-rotation
-                              cameraControls: true, // Enable camera controls
-                              disableTap: true,
-                              disablePan: true,
+                            SizedBox(
+                              width: maxWidth * 0.35,
+                              height: maxHeight * 0.14,
+                              child: ModelViewer(
+                                src: context.watch<ModelPath>().modelPath,
+                                alt: 'My 3D Model',
+                                ar: false, // Enable AR mode
+                                cameraControls: false, // Enable camera controls
+                                autoRotate: true, // Enable auto-rotation
+                                rotationPerSecond: "90deg",
+                              ),
                             ),
+                            Padding(
+                              padding: EdgeInsets.only(top: maxHeight * 0.135),
+                              child: Container(
+                                color: objglobals.secondColor,
+                                child: SizedBox(
+                                  width: maxWidth * 0.35,
+                                  height: maxHeight * 0.03,
+                                  child: AutoSizeText(
+                                    context.watch<PlayerName>().playerName,
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.getFont(
+                                      'Roboto', // Replace with your desired Google Font
+                                      textStyle: const TextStyle(
+                                          fontSize: 23,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ],
@@ -278,33 +291,56 @@ class _ReSkinState extends State<ReSkin> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(
                       maxWidth * 0.585, maxHeight * 0.07, 0, 0),
-                  child: Container(
+                  child: SizedBox(
                     width: maxWidth * 0.35,
-                    height: maxHeight * 0.15,
+                    height: maxHeight * 0.165,
                     child: Stack(
                       children: [
-                        Container(
+                        SizedBox(
                           width: maxWidth,
                           height: maxHeight,
                           child: Image.asset(
-                            enemyBG,
+                            context.watch<BGPathEnemy>().bgPath,
                             fit: BoxFit.fill,
                           ),
                         ),
-                        ModelViewer(
-                          src: enemyChar,
-                          alt: 'My 3D Model',
-                          ar: false, // Enable AR mode
-                          autoRotate: false, // Enable auto-rotation
-                          cameraControls: false, // Enable camera controls
-                          disableTap: true,
-                          disablePan: true,
-                          disableZoom: true,
+                        SizedBox(
+                          width: maxWidth * 0.35,
+                          height: maxHeight * 0.14,
+                          child: ModelViewer(
+                            src: context.watch<ModelPathEnemy>().modelPath,
+                            alt: 'My 3D Model',
+                            ar: false, // Enable AR mode
+                            cameraControls: false, // Enable camera controls
+                            autoRotate: true, // Enable auto-rotation
+                            rotationPerSecond: "90deg",
+                          ),
                         ),
+                        Padding(
+                          padding: EdgeInsets.only(top: maxHeight * 0.135),
+                          child: Container(
+                            color: objglobals.secondColor,
+                            child: SizedBox(
+                              width: maxWidth * 0.35,
+                              height: maxHeight * 0.03,
+                              child: AutoSizeText(
+                                context.watch<enemyName>().nameEnemey,
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.getFont(
+                                  'Roboto', // Replace with your desired Google Font
+                                  textStyle: const TextStyle(
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
                 ),
+
                 //Fragen Box
                 Padding(
                   padding: EdgeInsets.fromLTRB(
@@ -331,7 +367,7 @@ class _ReSkinState extends State<ReSkin> {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.getFont(
                             'Roboto', // Replace with your desired Google Font
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w500),
                           ),
                         ),
@@ -343,7 +379,7 @@ class _ReSkinState extends State<ReSkin> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(
                       maxWidth * 0.73, maxHeight * 0.2585, 0, 0),
-                  child: Container(
+                  child: SizedBox(
                     width: maxWidth * 0.18,
                     height: maxHeight * 0.03,
                     child: AutoSizeText(
@@ -362,11 +398,11 @@ class _ReSkinState extends State<ReSkin> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(
                       maxWidth * 0.73, maxHeight * 0.417, 0, 0),
-                  child: Container(
+                  child: SizedBox(
                     width: maxWidth * 0.18,
                     height: maxHeight * 0.03,
                     child: AutoSizeText(
-                      (index + 1).toString() + "/4",
+                      "${index + 1}/4",
                       textAlign: TextAlign.right,
                       style: GoogleFonts.getFont(
                         'Roboto', // Replace with your desired Google Font
@@ -444,7 +480,7 @@ class _ReSkinState extends State<ReSkin> {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.getFont(
                             'Roboto', // Replace with your desired Google Font
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w900),
                           ),
                         ),
@@ -482,7 +518,7 @@ class _ReSkinState extends State<ReSkin> {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.getFont(
                             'Roboto', // Replace with your desired Google Font
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w900),
                           ),
                         ),
@@ -520,7 +556,7 @@ class _ReSkinState extends State<ReSkin> {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.getFont(
                             'Roboto', // Replace with your desired Google Font
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w900),
                           ),
                         ),
@@ -531,16 +567,16 @@ class _ReSkinState extends State<ReSkin> {
               ],
             )
           : Column(children: [
-              SizedBox(
+              const SizedBox(
                 height: 200,
               ),
               Visibility(
-                visible: context.watch<GameFinish>().ergebnis.length == 0,
+                visible: context.watch<GameFinish>().ergebnis.isEmpty,
                 child: Container(
                   width: maxWidth,
                   height: maxHeight * 0.1,
                   color: Colors.amber,
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Warten auf den  Gegner",
                       textAlign: TextAlign.center,
@@ -554,11 +590,11 @@ class _ReSkinState extends State<ReSkin> {
                 ),
               ),
               Visibility(
-                visible: context.watch<GameFinish>().ergebnis.length == 0,
+                visible: context.watch<GameFinish>().ergebnis.isEmpty,
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(
                       maxWidth * 0.15, maxHeight * 0.02, maxWidth * 0.15, 0),
-                  child: Container(
+                  child: SizedBox(
                     height: maxHeight * 0.08,
                     width: double.maxFinite,
                     child: Lottie.asset('lib/images/97443-loading-gray.json'),
@@ -566,7 +602,7 @@ class _ReSkinState extends State<ReSkin> {
                 ),
               ),
               Visibility(
-                visible: context.watch<GameFinish>().ergebnis.length != 0,
+                visible: context.watch<GameFinish>().ergebnis.isNotEmpty,
                 child: Container(
                   width: maxWidth,
                   height: maxHeight * 0.1,
@@ -575,7 +611,7 @@ class _ReSkinState extends State<ReSkin> {
                     child: Text(
                       context.watch<GameFinish>().ergebnis,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 35,
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 41, 11, 234),
@@ -585,7 +621,7 @@ class _ReSkinState extends State<ReSkin> {
                 ),
               ),
               Visibility(
-                visible: context.watch<GameFinish>().ergebnis.length != 0,
+                visible: context.watch<GameFinish>().ergebnis.isNotEmpty,
                 child: GestureDetector(
                   onTap: () {
                     context.read<GameFinish>().getErgebnis("");
@@ -613,7 +649,7 @@ class _ReSkinState extends State<ReSkin> {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.getFont(
                             'Roboto', // Replace with your desired Google Font
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 fontSize: 30, fontWeight: FontWeight.w500),
                           ),
                         ),

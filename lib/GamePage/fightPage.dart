@@ -72,8 +72,8 @@ class _FightPageState extends State<FightPage> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.getFont(
                     'Orbitron', // Replace with your desired Google Font
-                    textStyle:
-                        TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+                    textStyle: const TextStyle(
+                        fontSize: 30, fontWeight: FontWeight.w500),
                   ),
                 ),
               ),
@@ -157,7 +157,11 @@ class _FightPageState extends State<FightPage> {
           onTap: () async {
             Prefs prefsget = await getPrefs();
             try {
-              connectToWebSocket(prefsget.playerguid, "100", context);
+              String charPath = context.read<ModelPath>().modelPath;
+              String bgPath = context.read<BGPath>().bgPath;
+              String name = context.read<PlayerName>().playerName;
+              connectToWebSocket(prefsget.playerguid, "100", context, charPath,
+                  bgPath, name); //thefuture
             } catch (E) {
               print("e");
             }
@@ -234,7 +238,7 @@ class SearchSocket extends ChangeNotifier {
 }
 
 class PlayerName extends ChangeNotifier {
-  String playerName = "";
+  String playerName = "Royan Wisag Ernand";
 
   void updatePlayer(String getName) {
     playerName = getName;
@@ -274,6 +278,34 @@ class BGPath extends ChangeNotifier {
 
   void changePath(getPath) {
     bgPath = getPath;
+    notifyListeners();
+  }
+}
+
+//Enemy
+class ModelPathEnemy extends ChangeNotifier {
+  String modelPath = "3DModels/Pilzi.glb";
+
+  void changePath(getPath) {
+    modelPath = getPath;
+    notifyListeners();
+  }
+}
+
+class BGPathEnemy extends ChangeNotifier {
+  String bgPath = "Backgrounds/BG00.jpg";
+
+  void changePath(getPath) {
+    bgPath = getPath;
+    notifyListeners();
+  }
+}
+
+class enemyName extends ChangeNotifier {
+  String nameEnemey = "";
+
+  void updatePlayer(String getName) {
+    nameEnemey = getName;
     notifyListeners();
   }
 }

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-final cloudFunctionUrl =
-    'https://us-central1-dev-exchanger-383804.cloudfunctions.net/CreateOrGetUserUnsec';
+const cloudFunctionUrl =
+    'https://europe-west3-dev-exchanger-383804.cloudfunctions.net/CreateOrGetUserEU';
 
 //Http request createUser wenn möglich sonst return message;
 Future<int> callCloudFunction(
