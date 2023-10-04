@@ -238,7 +238,7 @@ class SearchSocket extends ChangeNotifier {
 }
 
 class PlayerName extends ChangeNotifier {
-  String playerName = "Royan Wisag Ernand";
+  String playerName = "";
 
   void updatePlayer(String getName) {
     playerName = getName;
