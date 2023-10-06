@@ -26,7 +26,7 @@ class CharPage extends StatefulWidget {
   State<CharPage> createState() => _CharPageState();
 }
 
-Color color1 = Color.fromARGB(161, 212, 0, 205);
+Color color1 = const Color.fromARGB(161, 212, 0, 205);
 Color color2 = Colors.transparent;
 
 class _CharPageState extends State<CharPage> {
@@ -53,7 +53,9 @@ class _CharPageState extends State<CharPage> {
     }
     try {
       setState(() {
-        listChars = listChars;
+        if (mounted) {
+          listChars = listChars;
+        }
       });
     } catch (e) {
       print("CHars Error list line 60");
@@ -65,7 +67,7 @@ class _CharPageState extends State<CharPage> {
   @override
   void initState() {
     setState(() {
-      color1 = Color.fromARGB(161, 212, 0, 205);
+      color1 = const Color.fromARGB(161, 212, 0, 205);
       color2 = Colors.transparent;
     });
 
@@ -76,6 +78,7 @@ class _CharPageState extends State<CharPage> {
   bool showchars = true;
   bool showbgs = false;
   bool showborders = false;
+  @override
   Widget build(BuildContext context) {
     Globals objglobals = Globals();
     double maxWidth = MediaQuery.of(context).size.width;
@@ -113,8 +116,8 @@ class _CharPageState extends State<CharPage> {
                 textAlign: TextAlign.center,
                 style: GoogleFonts.getFont(
                   'Orbitron', // Replace with your desired Google Font
-                  textStyle:
-                      TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+                  textStyle: const TextStyle(
+                      fontSize: 30, fontWeight: FontWeight.w500),
                 ),
               ),
             ),
@@ -123,7 +126,7 @@ class _CharPageState extends State<CharPage> {
 
         Padding(
           padding: EdgeInsets.only(top: maxWidth * 0.03),
-          child: Container(
+          child: SizedBox(
             height: maxHeight * 0.04,
             child: Row(
               children: [
@@ -163,15 +166,15 @@ class _CharPageState extends State<CharPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(),
-                        Container(
+                        const SizedBox(),
+                        SizedBox(
                           width: maxWidth * 0.08,
                           child: Image.asset(
                             "3DScreenShot/PilziSS.png",
                             fit: BoxFit.fill,
                           ),
                         ),
-                        SizedBox(),
+                        const SizedBox(),
                       ],
                     ),
                   ),
@@ -212,15 +215,15 @@ class _CharPageState extends State<CharPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(),
-                        Container(
+                        const SizedBox(),
+                        SizedBox(
                           width: maxWidth * 0.08,
                           child: Image.asset(
                             "Backgrounds/BG02.jpg",
                             fit: BoxFit.fill,
                           ),
                         ),
-                        SizedBox(),
+                        const SizedBox(),
                       ],
                     ),
                   ),
@@ -229,13 +232,13 @@ class _CharPageState extends State<CharPage> {
             ),
           ),
         ),
-        Container(
+        SizedBox(
             width: maxWidth,
             height: maxHeight * 0.4,
             child: Column(
               children: [
                 showchars
-                    ? Container(
+                    ? SizedBox(
                         width: maxWidth,
                         height: maxHeight * 0.37,
                         child: ListView.builder(
@@ -248,11 +251,11 @@ class _CharPageState extends State<CharPage> {
                             );
                           },
                         ))
-                    : SizedBox(),
+                    : const SizedBox(),
 
                 //Bgs
                 showbgs
-                    ? Container(
+                    ? SizedBox(
                         width: maxWidth,
                         height: maxHeight * 0.37,
                         child: ListView.builder(
@@ -266,11 +269,11 @@ class _CharPageState extends State<CharPage> {
                           },
                         ),
                       )
-                    : SizedBox(),
+                    : const SizedBox(),
               ],
             )),
 
-        Container(
+        SizedBox(
           width: maxWidth,
           height: maxHeight * 0.29,
           child: (GetModelViewer(
@@ -298,6 +301,7 @@ class _ItemState extends State<Item> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     Globals objglobals = Globals();
     double maxWidth = MediaQuery.of(context).size.width;
@@ -343,10 +347,8 @@ class _ItemState extends State<Item> {
               color: objglobals.fourthColor,
               width: maxWidth * 0.6,
               height: maxHeight * 0.07,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: objglobals.fourthColor),
-                onPressed: () async {
+              child: GestureDetector(
+                onTap: () async {
                   const String char = "Char";
                   const String bg = "BG";
                   if (widget.items.assetCategory[widget.index] == char &&
@@ -365,13 +367,18 @@ class _ItemState extends State<Item> {
                   updateSelected(widget.items.assetCategory[widget.index],
                       widget.items.assetLink[widget.index]);
                 },
-                child: AutoSizeText(
-                  "Select",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.getFont(
-                    'Orbitron', // Replace with your desired Google Font
-                    textStyle:
-                        TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                child: Container(
+                  color: objglobals.fourthColor,
+                  child: Center(
+                    child: AutoSizeText(
+                      "Select",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.getFont(
+                        'Orbitron', // Replace with your desired Google Font
+                        textStyle: const TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.w500),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -405,7 +412,7 @@ class _GetModelViewerState extends State<GetModelViewer> {
             Padding(
               padding:
                   EdgeInsets.fromLTRB(maxWidth * 0.2, 0, maxWidth * 0.2, 0),
-              child: Container(
+              child: SizedBox(
                 width: maxWidth,
                 child: Image.asset(
                   context.watch<BGPath>().bgPath,

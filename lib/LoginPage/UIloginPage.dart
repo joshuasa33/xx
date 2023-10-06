@@ -34,6 +34,7 @@ class _LoginState extends State<Login> {
     }
   }
 
+  @override
   void initState() {
     testfunc();
     super.initState();
@@ -54,12 +55,15 @@ class _LoginState extends State<Login> {
             //Header
             Padding(
               padding: EdgeInsets.fromLTRB(0, maxHeight * 0.08, 0, 0),
-              child: Container(
+              child: SizedBox(
                 width: maxWidth,
-                child: const AutoSizeText(
+                child: AutoSizeText(
                   "Quiz Pvp",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 100, fontFamily: 'Cyberthic'),
+                  style: TextStyle(
+                      fontSize: 100,
+                      fontFamily: 'Cyberthic',
+                      height: maxHeight * 0.00125),
                 ),
               ),
             ),
@@ -67,7 +71,7 @@ class _LoginState extends State<Login> {
             Padding(
               padding: EdgeInsets.fromLTRB(
                   maxWidth * 0.15, maxHeight * 0.075, maxWidth * 0.15, 0),
-              child: Container(
+              child: SizedBox(
                 width: maxWidth,
                 height: maxHeight * 0.025,
                 child: AutoSizeText(
@@ -97,7 +101,7 @@ class _LoginState extends State<Login> {
                     child: TextField(
                       maxLines: 1,
                       controller: myController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           border: InputBorder.none, hintText: "Dein Name"),
                       style: TextStyle(
                         fontSize: maxWidth * 0.07, // Change font size here
@@ -110,11 +114,13 @@ class _LoginState extends State<Login> {
             Padding(
               padding:
                   EdgeInsets.fromLTRB(maxWidth * 0.15, 0.0, maxWidth * 0.15, 0),
-              child: Container(
+              child: SizedBox(
                 width: maxWidth,
                 height: maxHeight * 0.07,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(maxHeight * 0.00)),
                     backgroundColor: objglobals.fourthColor,
                   ),
                   onPressed: ispressable
@@ -172,7 +178,6 @@ class _LoginState extends State<Login> {
                             setState(() {
                               errorText = "Name zu kurz";
                             });
-                            ;
                           }
                         }
                       : null,
@@ -180,8 +185,10 @@ class _LoginState extends State<Login> {
                     "Register",
                     style: GoogleFonts.getFont(
                       'Orbitron', // Replace with your desired Google Font
-                      textStyle:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                      textStyle: const TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
                     ),
                   ),
                 ),
@@ -193,10 +200,10 @@ class _LoginState extends State<Login> {
               height: maxHeight * 0.03,
             ),
             Expanded(
-              child: Container(
+              child: SizedBox(
                 width: maxWidth,
                 height: maxHeight * 0.4,
-                child: ModelViewer(
+                child: const ModelViewer(
                   src: "3DModels/bike.glb",
                   alt: 'My 3D Model',
                   ar: false, // Enable AR mode

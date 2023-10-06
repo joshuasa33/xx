@@ -52,9 +52,15 @@ void connectToWebSocket(String playerGuid, String elo, BuildContext context,
         _channel!.sink.close();
         context.read<SearchSocket>().setFalse();
         context.read<enemyName>().updatePlayer(nameEnemy);
+        print("BG PAth:$bgPath");
+        print("Char PAth$charPath");
+        print(nameEnemy);
 
-        if (chars.contains(bgEnemy)) {
+        if (BGs.contains(bgEnemy)) {
           context.read<BGPathEnemy>().changePath(bgPath);
+          print("BG Enemy found");
+        } else {
+          print("BG Enemy not found");
         }
         if (chars.contains(charEnemy)) {
           context.read<ModelPathEnemy>().changePath(charEnemy);

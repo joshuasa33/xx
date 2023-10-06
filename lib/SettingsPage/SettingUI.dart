@@ -54,8 +54,8 @@ class _SettingPageState extends State<SettingPage> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.getFont(
                     'Orbitron', // Replace with your desired Google Font
-                    textStyle:
-                        TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+                    textStyle: const TextStyle(
+                        fontSize: 30, fontWeight: FontWeight.w500),
                   ),
                 ),
               ),
@@ -66,7 +66,7 @@ class _SettingPageState extends State<SettingPage> {
           Padding(
             padding: EdgeInsets.fromLTRB(
                 maxWidth * 0.3, maxHeight * 0.02, maxWidth * 0.30, 0),
-            child: Container(
+            child: SizedBox(
               height: maxHeight * 0.05,
               width: double.maxFinite,
               child: Container(
@@ -90,8 +90,8 @@ class _SettingPageState extends State<SettingPage> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.getFont(
                     'Orbitron', // Replace with your desired Google Font
-                    textStyle:
-                        TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+                    textStyle: const TextStyle(
+                        fontSize: 30, fontWeight: FontWeight.w500),
                   ),
                 ),
               ),
@@ -102,10 +102,10 @@ class _SettingPageState extends State<SettingPage> {
           Padding(
             padding: EdgeInsets.fromLTRB(
                 maxWidth * 0.15, 0.015 * maxHeight, maxWidth * 0.15, 0),
-            child: Container(
+            child: SizedBox(
               height: maxHeight * 0.08,
               width: maxWidth,
-              child: AutoSizeText(
+              child: const AutoSizeText(
                 "Fragen, Feedback oder Sonstiges gerne an \njoshuaboll@hotmail.com",
                 style: TextStyle(fontSize: 20),
               ),
@@ -138,11 +138,8 @@ class _SettingPageState extends State<SettingPage> {
                 ),
               ),
               height: maxHeight * 0.07,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: objglobals.secondColor,
-                ),
-                onPressed: () {
+              child: GestureDetector(
+                onTap: () {
                   final Uri toLaunch = Uri(
                       scheme: 'https',
                       host: 'jandspice.blogspot.com',
@@ -150,14 +147,28 @@ class _SettingPageState extends State<SettingPage> {
                   print(toLaunch.toString());
                   launchUrl(toLaunch);
                 },
-                child: AutoSizeText(
-                  ">>>Datenschutz<<<",
-                  style: GoogleFonts.getFont(
-                    'Orbitron', // Replace with your desired Google Font
-                    textStyle: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w500,
-                        color: objglobals.thirdColor),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: objglobals.secondColor,
+                    border: Border.all(
+                      width: maxHeight *
+                          0.005, // adjust border thickness as desired
+                      color: Colors.black, // choose border color
+                      style: BorderStyle.solid,
+                      // choose border style
+                    ),
+                  ),
+                  child: Center(
+                    child: AutoSizeText(
+                      ">>>Datenschutz<<<",
+                      style: GoogleFonts.getFont(
+                        'Orbitron', // Replace with your desired Google Font
+                        textStyle: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                            color: objglobals.thirdColor),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -165,17 +176,23 @@ class _SettingPageState extends State<SettingPage> {
           ),
 
           //AGB
+          //ELEVATED BUTTON
           Padding(
             padding: EdgeInsets.fromLTRB(
                 maxWidth * 0.15, 0.015 * maxHeight, maxWidth * 0.15, 0),
             child: Container(
               width: maxWidth,
-              height: maxHeight * 0.07,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: objglobals.secondColor,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: maxHeight * 0.00, // adjust border thickness as desired
+                  color: Colors.black, // choose border color
+                  style: BorderStyle.solid,
+                  // choose border style
                 ),
-                onPressed: () {
+              ),
+              height: maxHeight * 0.07,
+              child: GestureDetector(
+                onTap: () {
                   final Uri toLaunch = Uri(
                       scheme: 'https',
                       host: 'jandspice.blogspot.com',
@@ -183,14 +200,28 @@ class _SettingPageState extends State<SettingPage> {
                   print(toLaunch.toString());
                   launchUrl(toLaunch);
                 },
-                child: AutoSizeText(
-                  ">>>>>>>>AGB<<<<<<<<",
-                  style: GoogleFonts.getFont(
-                    'Orbitron', // Replace with your desired Google Font
-                    textStyle: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w500,
-                        color: objglobals.thirdColor),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: objglobals.secondColor,
+                    border: Border.all(
+                      width: maxHeight *
+                          0.005, // adjust border thickness as desired
+                      color: Colors.black, // choose border color
+                      style: BorderStyle.solid,
+                      // choose border style
+                    ),
+                  ),
+                  child: Center(
+                    child: AutoSizeText(
+                      ">>>>>>>>>AGB<<<<<<<<<",
+                      style: GoogleFonts.getFont(
+                        'Orbitron', // Replace with your desired Google Font
+                        textStyle: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                            color: objglobals.thirdColor),
+                      ),
+                    ),
                   ),
                 ),
               ),

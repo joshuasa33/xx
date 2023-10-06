@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:testre/FileHandling/fileHelper.dart';
 import 'package:testre/INGAME/ingame.dart';
 import 'package:testre/INGAME/reskin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,6 +25,7 @@ void main() async {
   bool getfirstime = true;
   const constguid = "playerguid";
   final SharedPreferences prefs = await SharedPreferences.getInstance();
+
   //
 
   if (prefs.containsKey(constguid)) {

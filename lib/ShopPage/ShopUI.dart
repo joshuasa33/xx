@@ -96,8 +96,8 @@ class _ShopPageState extends State<ShopPage> {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.getFont(
                       'Orbitron', // Replace with your desired Google Font
-                      textStyle:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+                      textStyle: const TextStyle(
+                          fontSize: 30, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -120,7 +120,7 @@ class _ShopPageState extends State<ShopPage> {
                       textAlign: TextAlign.left,
                       style: GoogleFonts.getFont(
                         'Orbitron', // Replace with your desired Google Font
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             fontSize: 27, fontWeight: FontWeight.w500),
                       ),
                     ),
@@ -223,7 +223,7 @@ class _ShopPageState extends State<ShopPage> {
                               await fetchMetadata(context);
                               print("Worked");
                             } catch (E) {
-                              print("PurchaseError200" + E.toString());
+                              print("PurchaseError200$E");
                             } finally {
                               changeShopState(false);
                             }
@@ -322,7 +322,7 @@ class _ShopPageState extends State<ShopPage> {
                               await fetchMetadata(context);
                               print("Worked");
                             } catch (E) {
-                              print("PurchaseError200" + E.toString());
+                              print("PurchaseError200$E");
                             } finally {
                               changeShopState(false);
                             }
@@ -422,7 +422,7 @@ class _ShopPageState extends State<ShopPage> {
                               await fetchMetadata(context);
                               print("Worked");
                             } catch (E) {
-                              print("PurchaseError200" + E.toString());
+                              print("PurchaseError200$E");
                             } finally {
                               changeShopState(false);
                             }
@@ -665,8 +665,8 @@ class _ItemState extends State<Item> {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.getFont(
                       'Orbitron', // Replace with your desired Google Font
-                      textStyle:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                      textStyle: const TextStyle(
+                          fontSize: 25, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -679,6 +679,9 @@ class _ItemState extends State<Item> {
                 padding: EdgeInsets.only(top: maxHeight * 0.00),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(maxHeight * 0.00)),
                       backgroundColor: objglobals.fourthColor),
                   onPressed: canBuy
                       ? () async {
@@ -710,7 +713,6 @@ class _ItemState extends State<Item> {
                               });
                               await fetchMetadata(context);
                             }
-                          } catch (e) {
                           } finally {
                             setState(() {
                               context.read<Buyable>().updateBuyable(true);
@@ -723,8 +725,10 @@ class _ItemState extends State<Item> {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.getFont(
                       'Orbitron', // Replace with your desired Google Font
-                      textStyle:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                      textStyle: const TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
                     ),
                   ),
                 ),
@@ -762,7 +766,8 @@ void popup(BuildContext context, double maxHeight, double maxWidth,
       Globals objglobals = Globals();
       return Container(
         height: maxHeight,
-        color: Color.fromARGB(216, 0, 0, 0),
+        width: maxWidth,
+        color: const Color.fromARGB(216, 0, 0, 0),
         child: Column(
           children: [
             char
@@ -786,7 +791,7 @@ void popup(BuildContext context, double maxHeight, double maxWidth,
                       ),
                     ),
                   )
-                : SizedBox(),
+                : const SizedBox(),
 
             //BG
             bg
@@ -806,7 +811,7 @@ void popup(BuildContext context, double maxHeight, double maxWidth,
                       ),
                     ),
                   )
-                : SizedBox(),
+                : const SizedBox(),
 
             //Buy Button
             Padding(
@@ -841,10 +846,9 @@ void popup(BuildContext context, double maxHeight, double maxWidth,
                             if (httpcode == 502) {
                               context.read<PopupError>().swapState(true);
                               print("not enough coins re");
-                              WaitingShopResponse();
+                              const WaitingShopResponse();
                               await fetchMetadata(context);
                             }
-                          } catch (e) {
                           } finally {
                             context.read<Buyable>().updateBuyable(true);
                           }
@@ -901,7 +905,7 @@ class _WaitingShopResponseState extends State<WaitingShopResponse> {
     return Container(
       width: maxWidth,
       height: maxHeight,
-      color: Color.fromARGB(169, 255, 255, 255),
+      color: const Color.fromARGB(169, 255, 255, 255),
       child: Column(
         children: [
           Container(
@@ -932,14 +936,14 @@ class _erroTextOverlayState extends State<erroTextOverlay> {
       child: Container(
         width: maxWidth,
         height: maxHeight,
-        color: Color.fromARGB(169, 255, 255, 255),
+        color: const Color.fromARGB(169, 255, 255, 255),
         child: Column(
           children: [
             Padding(
               padding: EdgeInsets.only(top: maxHeight * 0.35),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 212, 0, 205),
+                  color: const Color.fromARGB(255, 212, 0, 205),
                   border: Border.all(width: maxHeight * 0.0065),
                 ),
                 width: maxWidth * 0.7,
