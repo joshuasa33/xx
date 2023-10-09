@@ -52,16 +52,19 @@ class _GamePageState extends State<GamePage> {
               }
               context.read<GamePageIndex>().changeIndex(index);
               setState(() {
-                passindex = value;
+                if (mounted) {
+                  passindex = value;
+                }
               });
-              print("changed$value");
             },
             controller: context.read<PageViewIndex>()._pageController,
-            children: const [
-              ShopPage(),
-              CharPage(),
-              FightPage(),
-              SettingPage(),
+            children: [
+              const ShopPage(),
+              const CharPage(),
+              FightPage(
+                key: UniqueKey(),
+              ),
+              const SettingPage(),
             ],
           ),
 

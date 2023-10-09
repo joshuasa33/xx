@@ -118,8 +118,6 @@ class _ReSkinState extends State<ReSkin> {
             colors[colorindex] = Colors.green;
           });
         }
-
-        // ignore: use_build_context_synchronously
       }
       //
       else {
@@ -251,13 +249,16 @@ class _ReSkinState extends State<ReSkin> {
                             SizedBox(
                               width: maxWidth * 0.35,
                               height: maxHeight * 0.14,
-                              child: ModelViewer(
-                                src: context.watch<ModelPath>().modelPath,
-                                alt: 'My 3D Model',
-                                ar: false, // Enable AR mode
-                                cameraControls: false, // Enable camera controls
-                                autoRotate: true, // Enable auto-rotation
-                                rotationPerSecond: "90deg",
+                              child: Visibility(
+                                visible:
+                                    context.watch<ModelPath>().modelPath != "",
+                                child: ModelViewer(
+                                  src: context.watch<ModelPath>().modelPath,
+                                  alt: 'My 3D Model',
+                                  ar: false, // Enable AR mode
+                                  cameraControls:
+                                      false, // Enable camera controls
+                                ),
                               ),
                             ),
                             Padding(
@@ -312,8 +313,6 @@ class _ReSkinState extends State<ReSkin> {
                             alt: 'My 3D Model',
                             ar: false, // Enable AR mode
                             cameraControls: false, // Enable camera controls
-                            autoRotate: true, // Enable auto-rotation
-                            rotationPerSecond: "90deg",
                           ),
                         ),
                         Padding(
@@ -368,7 +367,9 @@ class _ReSkinState extends State<ReSkin> {
                           style: GoogleFonts.getFont(
                             'Roboto', // Replace with your desired Google Font
                             textStyle: const TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.w500),
+                                height: 0,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w500),
                           ),
                         ),
                       ),

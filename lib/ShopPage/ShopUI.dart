@@ -1,6 +1,5 @@
 // ignore_for_file: sized_box_for_whitespace
 
-import 'dart:ffi';
 import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -687,7 +686,9 @@ class _ItemState extends State<Item> {
                       ? () async {
                           try {
                             setState(() {
-                              context.read<Buyable>().updateBuyable(false);
+                              if (mounted) {
+                                context.read<Buyable>().updateBuyable(false);
+                              }
                             });
                             final SharedPreferences prefs =
                                 await SharedPreferences.getInstance();
@@ -709,14 +710,18 @@ class _ItemState extends State<Item> {
                             if (httpcode == 502) {
                               print("not enough coins re");
                               setState(() {
-                                context.read<showError>().swapState(true);
+                                if (mounted) {
+                                  context.read<showError>().swapState(true);
+                                }
                               });
                               await fetchMetadata(context);
                             }
                           } finally {
-                            setState(() {
-                              context.read<Buyable>().updateBuyable(true);
-                            });
+                            if (mounted) {
+                              setState(() {
+                                context.read<Buyable>().updateBuyable(true);
+                              });
+                            }
                           }
                         }
                       : null,

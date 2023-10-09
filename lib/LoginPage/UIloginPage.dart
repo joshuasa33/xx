@@ -25,18 +25,8 @@ bool ispressable = true;
 
 class _LoginState extends State<Login> {
   @override
-  void testfunc() async {
-    try {
-      var connectivityResult = await (Connectivity().checkConnectivity());
-      print(connectivityResult);
-    } catch (e) {
-      print(e);
-    }
-  }
-
   @override
   void initState() {
-    testfunc();
     super.initState();
   }
 

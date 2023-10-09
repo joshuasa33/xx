@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -66,10 +65,12 @@ class _CharPageState extends State<CharPage> {
   ShopItems listBGs = ShopItems();
   @override
   void initState() {
-    setState(() {
-      color1 = const Color.fromARGB(161, 212, 0, 205);
-      color2 = Colors.transparent;
-    });
+    if (mounted) {
+      setState(() {
+        color1 = const Color.fromARGB(161, 212, 0, 205);
+        color2 = Colors.transparent;
+      });
+    }
 
     resolveChars();
     super.initState();
@@ -412,7 +413,12 @@ class _GetModelViewerState extends State<GetModelViewer> {
             Padding(
               padding:
                   EdgeInsets.fromLTRB(maxWidth * 0.2, 0, maxWidth * 0.2, 0),
-              child: SizedBox(
+              child: Container(
+                decoration:
+                    context.watch<BGPath>().bgPath != "Backgrounds/BG00.jpg"
+                        ? BoxDecoration(
+                            border: Border.all(width: maxHeight * 0.007))
+                        : null,
                 width: maxWidth,
                 child: Image.asset(
                   context.watch<BGPath>().bgPath,
@@ -420,17 +426,20 @@ class _GetModelViewerState extends State<GetModelViewer> {
                 ),
               ),
             ),
-            SizedBox(
-              child: ModelViewer(
-                src: context.watch<ModelPath>().modelPath,
-                alt: 'My 3D Model',
-                ar: false, // Enable AR mode
-                autoRotate: false, // Enable auto-rotation
-                cameraControls: true, // Enable camera controls
-                disableTap: true,
-                disablePan: true,
-                disableZoom: true,
-                autoPlay: false,
+            Visibility(
+              visible: context.watch<ModelPath>().modelPath != "",
+              child: SizedBox(
+                child: ModelViewer(
+                  src: context.watch<ModelPath>().modelPath,
+                  alt: 'My 3D Model',
+                  ar: false, // Enable AR mode
+                  autoRotate: false, // Enable auto-rotation
+                  cameraControls: true, // Enable camera controls
+                  disableTap: true,
+                  disablePan: true,
+                  disableZoom: true,
+                  autoPlay: false,
+                ),
               ),
             ),
           ],

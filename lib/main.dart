@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -14,13 +16,16 @@ import 'ShopPage/ShopUI.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 //IAP
-final _configuration =
+
+final _configurationIOS =
     PurchasesConfiguration("appl_fxrRuarcPliSqvatZqUnWQZFdOL");
 //
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Purchases.configure(_configuration); //IAP
   MobileAds.instance.initialize();
+  if (Platform.isIOS) {
+    await Purchases.configure(_configurationIOS); //IAP
+  }
   String getplayerguid = "";
   bool getfirstime = true;
   const constguid = "playerguid";
@@ -96,7 +101,7 @@ class MyApp extends StatelessWidget {
       listobj.add(obj);
 
       //End
-      nextPage = const GamePage();
+      nextPage = GamePage();
     }
 
     return MaterialApp(

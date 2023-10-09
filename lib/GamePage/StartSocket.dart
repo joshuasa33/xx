@@ -57,7 +57,7 @@ void connectToWebSocket(String playerGuid, String elo, BuildContext context,
         print(nameEnemy);
 
         if (BGs.contains(bgEnemy)) {
-          context.read<BGPathEnemy>().changePath(bgPath);
+          context.read<BGPathEnemy>().changePath(bgEnemy);
           print("BG Enemy found");
         } else {
           print("BG Enemy not found");

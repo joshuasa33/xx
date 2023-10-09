@@ -20,9 +20,11 @@ class _BanneradState extends State<Bannerad> {
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (_) {
-          setState(() {
-            _isBannerAdReady = true;
-          });
+          if (mounted) {
+            setState(() {
+              _isBannerAdReady = true;
+            });
+          }
         },
         onAdFailedToLoad: (ad, err) {
           _isBannerAdReady = false;

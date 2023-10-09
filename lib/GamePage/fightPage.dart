@@ -38,7 +38,7 @@ class _FightPageState extends State<FightPage> {
     double maxWidth = MediaQuery.of(context).size.width;
     double maxHeight = MediaQuery.of(context).size.height;
 
-    return Container(
+    return SizedBox(
       child: Column(children: [
         //Top Header
         Padding(
@@ -138,14 +138,15 @@ class _FightPageState extends State<FightPage> {
                     fit: BoxFit.fill,
                   ),
                 ),
-                ModelViewer(
-                  src: context.watch<ModelPath>().modelPath,
-                  alt: 'My 3D Model',
-                  ar: false, // Enable AR mode
-                  autoRotate: false, // Enable auto-rotation
-                  cameraControls: true, // Enable camera controls
-                  disableTap: true,
-                  disablePan: true,
+                Visibility(
+                  visible: context.watch<ModelPath>().modelPath != "",
+                  child: ModelViewer(
+                    src: context.watch<ModelPath>().modelPath,
+                    alt: 'My 3D Model',
+                    cameraControls: true, // Enable camera controls
+                    disableTap: true,
+                    disablePan: true,
+                  ),
                 ),
               ],
             ),
@@ -265,11 +266,12 @@ class PlayerMoney extends ChangeNotifier {
 }
 
 class ModelPath extends ChangeNotifier {
-  String modelPath = "3DModels/Pilzi.glb";
+  String modelPath = "";
 
   void changePath(getPath) {
     modelPath = getPath;
     notifyListeners();
+    print(modelPath);
   }
 }
 
