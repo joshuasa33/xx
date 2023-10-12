@@ -10,7 +10,7 @@ void getDataStartGame(
   List<CFragen> fragenList =
       List<CFragen>.from(data.map((item) => CFragen.fromJson(item)));
 
-  Navigator.push(
+  Navigator.pushReplacement(
       context,
       MaterialPageRoute(
           builder: (context) => ReSkin(

@@ -626,7 +626,8 @@ class _ReSkinState extends State<ReSkin> {
                 child: GestureDetector(
                   onTap: () {
                     context.read<GameFinish>().getErgebnis("");
-                    Navigator.pop(context);
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => GamePage()));
                     fetchMetadata(context);
                   },
                   child: Padding(
