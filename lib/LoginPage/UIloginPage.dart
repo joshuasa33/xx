@@ -158,7 +158,7 @@ class _LoginState extends State<Login> {
                                     await SharedPreferences.getInstance();
                                 prefs.setString("name", playername);
                                 prefs.setString("playerguid", playerguid);
-                                print("Navigate");
+                                debugPrint("Navigate");
                                 Navigator.pushNamed(context, "/gamePage");
                               }
                             }

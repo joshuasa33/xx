@@ -211,9 +211,9 @@ class _ShopPageState extends State<ShopPage> {
                               int getcoins = await saveCoins(200);
                               await pushCoins(playerguid, getcoins);
                               await fetchMetadata(context);
-                              print("Worked");
+                              debugPrint("Worked");
                             } catch (E) {
-                              print("PurchaseError200$E");
+                              debugPrint("PurchaseError200$E");
                             } finally {
                               changeShopState(false);
                             }
@@ -310,13 +310,13 @@ class _ShopPageState extends State<ShopPage> {
                               int getcoins = await saveCoins(600);
                               await pushCoins(playerguid, getcoins);
                               await fetchMetadata(context);
-                              print("Worked");
+                              debugPrint("Worked");
                             } catch (E) {
-                              print("PurchaseError200$E");
+                              debugPrint("PurchaseError200$E");
                             } finally {
                               changeShopState(false);
                             }
-                            print("Worked");
+                            debugPrint("Worked");
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -410,13 +410,13 @@ class _ShopPageState extends State<ShopPage> {
                               int getcoins = await saveCoins(1300);
                               await pushCoins(playerguid, getcoins);
                               await fetchMetadata(context);
-                              print("Worked");
+                              debugPrint("Worked");
                             } catch (E) {
-                              print("PurchaseError200$E");
+                              debugPrint("PurchaseError200$E");
                             } finally {
                               changeShopState(false);
                             }
-                            print("Worked");
+                            debugPrint("Worked");
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -687,9 +687,9 @@ class _ItemState extends State<Item> {
                             int httpcode = await callBuyItem(
                                 widget.items.assetName[widget.index],
                                 playerguid!);
-                            print(httpcode.toString());
+                            debugPrint(httpcode.toString());
                             if (httpcode == 200) {
-                              print("worked");
+                              debugPrint("worked");
                               addItem(
                                   widget.items.assetName[widget.index],
                                   widget.items.assetCategory[widget.index],
@@ -699,7 +699,7 @@ class _ItemState extends State<Item> {
                               await getItems(context);
                             }
                             if (httpcode == 502) {
-                              print("not enough coins re");
+                              debugPrint("not enough coins re");
                               setState(() {
                                 if (mounted) {
                                   context.read<showError>().swapState(true);
@@ -830,9 +830,9 @@ void popup(BuildContext context, double maxHeight, double maxWidth,
                             String? playerguid = prefs.getString("playerguid");
                             int httpcode =
                                 await callBuyItem(assetName, playerguid!);
-                            print(httpcode.toString());
+                            debugPrint(httpcode.toString());
                             if (httpcode == 200) {
-                              print("worked");
+                              debugPrint("worked");
                               addItem(
                                   assetName, category, assetLink, assetLinkSS);
                               await fetchMetadata(context);
@@ -841,7 +841,7 @@ void popup(BuildContext context, double maxHeight, double maxWidth,
                             }
                             if (httpcode == 502) {
                               context.read<PopupError>().swapState(true);
-                              print("not enough coins re");
+                              debugPrint("not enough coins re");
                               const WaitingShopResponse();
                               await fetchMetadata(context);
                             }

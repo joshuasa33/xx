@@ -8,9 +8,9 @@
 //   try {
 //     UserCredential userCredential = await _auth.signInAnonymously();
 //     uid = userCredential.user?.uid;
-//     print("authenticated");
+//     debugPrint("authenticated");
 //   } catch (e) {
-//     print("authent error");
+//     debugPrint("authent error");
 //   }
 
 //   return uid;

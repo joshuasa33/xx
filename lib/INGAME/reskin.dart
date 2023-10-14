@@ -58,10 +58,9 @@ class _ReSkinState extends State<ReSkin> {
     Timer.periodic(const Duration(seconds: 1), (timer) {
       if (mounted) {
         lastCounterTimeLeft--;
-        print(lastCounterTimeLeft);
         if (lastCounterTimeLeft == 0) {
           timer.cancel();
-          print("Last Try");
+          debugPrint("Last Try");
           lastTime = true;
           proceedResult(lastTry: true);
         } else {
@@ -75,7 +74,7 @@ class _ReSkinState extends State<ReSkin> {
     await Future.delayed(const Duration(seconds: 1));
     GameFinish gameFinish = GameFinish();
     String ergebnisValue = gameFinish.ergebnis;
-    print("$ergebnisValue:Das Hier");
+    debugPrint("$ergebnisValue:Das Hier");
     if (mounted) {
       setState(() {
         alldone = true;
@@ -119,7 +118,7 @@ class _ReSkinState extends State<ReSkin> {
         if (mounted) {
           setState(() {
             canAnswer = false;
-            print("falsch re");
+            debugPrint("falsch re");
             if (widget.CFragenList![index].Antwort1 ==
                 widget.CFragenList![index].RichtigeAntwort) {
               colors[0] = Colors.green;
@@ -193,7 +192,7 @@ class _ReSkinState extends State<ReSkin> {
         Provider.of<GameFinish>(context, listen: false);
     refreshMainpageInstance.addListener(() {
       falldone();
-      print("Game DONE");
+      debugPrint("Game DONE");
     });
 
     super.initState();

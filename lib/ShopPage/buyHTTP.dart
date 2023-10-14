@@ -1,7 +1,8 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-final cloudFunctionUrl =
+const cloudFunctionUrl =
     'https://europe-west3-dev-exchanger-383804.cloudfunctions.net/PurchaseItem';
 
 //Http request createUser wenn möglich sonst return message;
@@ -20,7 +21,7 @@ Future<int> callBuyItem(
     body: jsonEncode(data),
   );
 
-  print('Statuscode: ${response.statusCode}');
-  print(response.body);
+  debugPrint('Statuscode: ${response.statusCode}');
+  debugPrint(response.body);
   return response.statusCode;
 }

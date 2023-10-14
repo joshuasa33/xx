@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,13 +10,13 @@ Future<void> pushCoins(String playerguid, int amount) async {
       'Content-Type': 'application/json',
     });
     if (response.statusCode == 200) {
-      print('Coins pushed successfully!');
+      debugPrint('Coins pushed successfully!');
       await resetCoins();
     } else {
-      print('Coins push failed.');
+      debugPrint('Coins push failed.');
     }
   } catch (e) {
-    print("Error Pushcoins + Prob No connection:$e");
+    debugPrint("Error Pushcoins + Prob No connection:$e");
   }
 }
 

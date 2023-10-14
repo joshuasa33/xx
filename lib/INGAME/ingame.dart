@@ -18,7 +18,7 @@ class _InGameState extends State<InGame> {
   void antwortCheck(String antwort) async {
     if (widget.CFragenList![gameindex].RichtigeAntwort == antwort) {
       gamepunkte++;
-      print("Richtig");
+      debugPrint("Richtig");
     }
     if (gameindex == 3) {
       Prefs prefsget = await getPrefs();
@@ -45,7 +45,7 @@ class _InGameState extends State<InGame> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.CFragenList);
+    //debugPrint(widget.CFragenList as String?);
 
     return Scaffold(
         body: Column(

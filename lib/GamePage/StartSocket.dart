@@ -36,31 +36,31 @@ void connectToWebSocket(String playerGuid, String elo, BuildContext context,
     _channel = IOWebSocketChannel.connect(url);
     context.read<SearchSocket>().setTrue();
 
-    print('WebSocket Connected');
+    debugPrint('WebSocket Connected');
 
     // Handle incoming messages
     _channel!.stream.listen((message) {
       var gameIdentfier = "!StartGame!";
       if (message.toString().contains(gameIdentfier)) {
-        print('Ready To StartGame');
+        debugPrint('Ready To StartGame');
         String rightString = message.toString().split(gameIdentfier)[1];
         String gameguid = message.toString().split(gameIdentfier)[0];
         String charEnemy = message.toString().split(gameIdentfier)[2];
         String bgEnemy = message.toString().split(gameIdentfier)[3];
         String nameEnemy = message.toString().split(gameIdentfier)[4];
-        print("$bgEnemy $charEnemy" " $nameEnemy");
+        debugPrint("$bgEnemy $charEnemy" " $nameEnemy");
         _channel!.sink.close();
         context.read<SearchSocket>().setFalse();
         context.read<enemyName>().updatePlayer(nameEnemy);
-        print("BG PAth:$bgPath");
-        print("Char PAth$charPath");
-        print(nameEnemy);
+        debugPrint("BG PAth:$bgPath");
+        debugPrint("Char PAth$charPath");
+        debugPrint(nameEnemy);
 
         if (BGs.contains(bgEnemy)) {
           context.read<BGPathEnemy>().changePath(bgEnemy);
-          print("BG Enemy found");
+          debugPrint("BG Enemy found");
         } else {
-          print("BG Enemy not found");
+          debugPrint("BG Enemy not found");
         }
         if (chars.contains(charEnemy)) {
           context.read<ModelPathEnemy>().changePath(charEnemy);
@@ -68,7 +68,7 @@ void connectToWebSocket(String playerGuid, String elo, BuildContext context,
         getDataStartGame(context, rightString, gameguid);
       }
     }, onDone: () {
-      print("Done");
+      debugPrint("Done");
     });
 
     // Send a message to the server

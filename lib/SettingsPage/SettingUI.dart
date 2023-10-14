@@ -144,7 +144,7 @@ class _SettingPageState extends State<SettingPage> {
                       scheme: 'https',
                       host: 'jandspice.blogspot.com',
                       path: '/2023/08/datenschutzerklarung-quizpvp.html');
-                  print(toLaunch.toString());
+                  debugPrint(toLaunch.toString());
                   launchUrl(toLaunch);
                 },
                 child: Container(
@@ -197,7 +197,7 @@ class _SettingPageState extends State<SettingPage> {
                       scheme: 'https',
                       host: 'jandspice.blogspot.com',
                       path: '/2023/08/agb-quizpvp.html');
-                  print(toLaunch.toString());
+                  debugPrint(toLaunch.toString());
                   launchUrl(toLaunch);
                 },
                 child: Container(

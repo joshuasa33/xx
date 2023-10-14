@@ -27,20 +27,20 @@ Future<void> fetchMetadata(BuildContext context) async {
       // Metadata retrieved successfully
       final metadata = json.decode(response.body);
       final player = Player.fromJson(metadata);
-      //print(player.playername);
-      //print(player.elo);
+      //debugPrint(player.playername);
+      //debugPrint(player.elo);
       context.read<PlayerElo>().updatePlayer(player.elo.toString());
       context.read<PlayerName>().updatePlayer(player.playername);
 
       context.read<PlayerMoney>().updatePlayer(player.money.split(".")[0]);
     } else {
       // Error retrieving metadata
-      print('Error retrieving metadata: ${response.statusCode}');
+      debugPrint('Error retrieving metadata: ${response.statusCode}');
       // Handle the error
     }
   } catch (error) {
     // Error retrieving metadata
-    print('Error retrieving metadata: $error');
+    debugPrint('Error retrieving metadata: $error');
     // Handle the error
   }
 
@@ -57,7 +57,7 @@ Future<void> fetchMetadata(BuildContext context) async {
     }
     await pushCoins(playerguid, getcoins);
   } catch (e) {
-    print("Error MetaData+e");
+    debugPrint("Error MetaData+e");
   }
 }
 

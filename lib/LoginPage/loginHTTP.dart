@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 const cloudFunctionUrl =
@@ -25,7 +26,7 @@ Future<int> callCloudFunction(
     body: jsonEncode(data),
   );
 
-  print('Statuscode: ${response.statusCode}');
-  print(response.body);
+  debugPrint('Statuscode: ${response.statusCode}');
+  debugPrint(response.body);
   return response.statusCode;
 }

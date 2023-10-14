@@ -1,20 +1,14 @@
-import 'dart:convert';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:provider/provider.dart';
-import 'package:testre/FileHandling/fileHelper.dart';
 
 import '../GamePage/fightPage.dart';
 import '../Helper/globals.dart';
 import '../ShopPage/shopFile.dart';
 import 'fileChar.dart';
 
-PageController _controller = PageController();
 int index = 0;
 int updateWidth = 0;
 
@@ -30,8 +24,6 @@ Color color2 = Colors.transparent;
 
 class _CharPageState extends State<CharPage> {
   void resolveChars() async {
-    String json = await resolveItems();
-    Map<String, dynamic> data = jsonDecode(json);
     MyChars obj = await decodeItems();
     const String char = "Char";
     const String bg = "BG";
@@ -57,7 +49,7 @@ class _CharPageState extends State<CharPage> {
         }
       });
     } catch (e) {
-      print("CHars Error list line 60");
+      debugPrint("CHars Error list line 60");
     }
   }
 
@@ -307,7 +299,7 @@ class _ItemState extends State<Item> {
     Globals objglobals = Globals();
     double maxWidth = MediaQuery.of(context).size.width;
     double maxHeight = MediaQuery.of(context).size.height;
-    return Container(
+    return SizedBox(
       child: Padding(
         padding: EdgeInsets.fromLTRB(maxWidth * 0.02, maxHeight * 0.01, 0, 0),
         child: Column(

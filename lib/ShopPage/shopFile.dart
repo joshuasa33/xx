@@ -93,7 +93,6 @@ Future<void> getItems(BuildContext context) async {
   //Backgrounds
 
   //Filter owned items from available shop items
-  int counter = 0;
   for (int i = 0; i < ownedItems.assetName.length; i++) {
     int index = items.assetName.indexOf(ownedItems.assetName[i]);
     items.assetName.removeAt(index);

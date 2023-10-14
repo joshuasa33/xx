@@ -1,17 +1,12 @@
-// ignore_for_file: sized_box_for_whitespace
+// ignore_for_file: sized_box_for_whitespace, use_build_context_synchronously
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:testre/Helper/globals.dart';
-import '../Helper/httpMetaData.dart';
-import '../INGAME/reskin.dart';
-import 'GamePage.dart';
 import 'StartSocket.dart';
 
 class FightPage extends StatefulWidget {
@@ -164,7 +159,7 @@ class _FightPageState extends State<FightPage> {
               connectToWebSocket(prefsget.playerguid, "100", context, charPath,
                   bgPath, name); //thefuture
             } catch (E) {
-              print("e");
+              debugPrint("e");
             }
           },
           child: Padding(
@@ -228,13 +223,13 @@ class SearchSocket extends ChangeNotifier {
   void setTrue() {
     state = true;
     notifyListeners();
-    print("true");
+    debugPrint("true");
   }
 
   void setFalse() {
     state = false;
     notifyListeners();
-    print("false");
+    debugPrint("false");
   }
 }
 
@@ -271,7 +266,7 @@ class ModelPath extends ChangeNotifier {
   void changePath(getPath) {
     modelPath = getPath;
     notifyListeners();
-    print(modelPath);
+    debugPrint(modelPath);
   }
 }
 

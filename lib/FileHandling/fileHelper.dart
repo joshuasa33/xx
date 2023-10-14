@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
@@ -10,7 +11,7 @@ Future<String> get _localPath async {
 }
 
 Future<File> get _localFile async {
-  final path = await _localPath + "/" + filename;
+  final path = "${await _localPath}/$filename";
   return File(path);
 }
 
@@ -25,8 +26,8 @@ Future<File> writeData(String json, String filenamesent) async {
 
 Future<String> retrieveData(String filenamesent) async {
   final directory = await getApplicationDocumentsDirectory();
-  String path = directory.path + "/" + filenamesent;
-  print(path);
+  String path = "${directory.path}/$filenamesent";
+  debugPrint(path);
   String jsonString = await File(path).readAsString();
   return jsonString;
 }
@@ -35,7 +36,7 @@ Future<bool> fileExists(String pathsend) async {
   final directory = await getApplicationDocumentsDirectory();
   String path = "${directory.path}/$pathsend";
   bool state = await File(path).exists();
-  //print(path);
+  //debugPrint(path);
   return state;
 }
 

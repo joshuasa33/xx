@@ -22,37 +22,37 @@ void resultToWebsocket(String playerGuid, String result, String gameguid,
         'ws://34.107.42.94:8090/?playerguid=$playerGuid&resultGame=$result&action=result&gameguid=$gameguid&done=$doneState';
 
     _channel = IOWebSocketChannel.connect(url);
-    print('WebSocket Connected');
+    debugPrint('WebSocket Connected');
 
     _channel?.stream.listen((message) {
-      print('Ready To Proceed Result$message');
+      debugPrint('Ready To Proceed Result$message');
       _channel!.sink.close();
       if (message.toString().contains(gameOverIdentefier)) {
         context.read<GameFinish>().setTrue();
-        print(message.toString());
+        debugPrint(message.toString());
         if (message.toString().contains(win)) {
-          print("win");
+          debugPrint("win");
           context.read<GameFinish>().getErgebnis("Gewonnen");
           return;
         }
         if (message.toString().contains(lose)) {
           context.read<GameFinish>().getErgebnis("Verloren");
-          return print("lose");
+          return debugPrint("lose");
         }
         if (message.toString().contains(draw)) {
           context.read<GameFinish>().getErgebnis("Unentschieden");
-          print("draw +/n " * 7);
+          debugPrint("draw +/n " * 7);
           return;
         }
         if (lasttry == true) {
           context.read<GameFinish>().getErgebnis("Netzwerkfehler");
         }
       }
-      print("close connection$message");
+      debugPrint("close connection$message");
     }, onDone: () {
-      print("Done");
+      debugPrint("Done");
     });
   } catch (e) {
-    print("Error resultToWS$e");
+    debugPrint("Error resultToWS$e");
   } finally {}
 }

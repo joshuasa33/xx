@@ -34,14 +34,14 @@ Future<void> createRewardedAd(BuildContext context, String adid) {
       request: const AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (RewardedAd ad) {
-          print('$ad loaded.');
+          debugPrint('$ad loaded.');
           _rewardedAd = ad;
           context.read<AdStateProvider>().settrue();
 
           _numRewardedLoadAttempts = 0;
         },
         onAdFailedToLoad: (LoadAdError error) {
-          print('RewardedAd failed to load: $error');
+          debugPrint('RewardedAd failed to load: $error');
           _rewardedAd = null;
           context.read<AdStateProvider>().setfalse();
 
@@ -58,19 +58,19 @@ Future<void> showRewardedAd(
   String adid,
 ) async {
   if (_rewardedAd == null) {
-    print('Warning: attempt to show rewarded before loaded.');
+    debugPrint('Warning: attempt to show rewarded before loaded.');
     return;
   }
   _rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
     onAdShowedFullScreenContent: (RewardedAd ad) =>
-        print('ad onAdShowedFullScreenContent.'),
+        debugPrint('ad onAdShowedFullScreenContent.'),
     onAdDismissedFullScreenContent: (RewardedAd ad) async {
-      print('$ad onAdDismissedFullScreenContent.');
+      debugPrint('$ad onAdDismissedFullScreenContent.');
       await ad.dispose();
       await createRewardedAd(context, adid);
     },
     onAdFailedToShowFullScreenContent: (RewardedAd ad, AdError error) async {
-      print('$ad onAdFailedToShowFullScreenContent: $error');
+      debugPrint('$ad onAdFailedToShowFullScreenContent: $error');
       await ad.dispose();
       await createRewardedAd(context, adid);
     },
@@ -79,7 +79,7 @@ Future<void> showRewardedAd(
   _rewardedAd!.setImmersiveMode(true);
   await _rewardedAd!.show(
       onUserEarnedReward: (AdWithoutView ad, RewardItem reward) async {
-    print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
+    debugPrint('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
     String playerguid = "";
     const constguid = "playerguid";
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -89,7 +89,7 @@ Future<void> showRewardedAd(
     int getcoins = await saveCoins(20);
     await pushCoins(playerguid, getcoins);
     await fetchMetadata(context);
-    print("done");
+    debugPrint("done");
     //open Quotes
   });
   _rewardedAd = null;
