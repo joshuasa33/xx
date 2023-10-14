@@ -1,23 +1,14 @@
-// ignore_for_file: sized_box_for_whitespace
-
-import 'dart:math';
+// ignore_for_file: sized_box_for_whitespace, use_build_context_synchronously
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart';
 import 'package:lottie/lottie.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:testre/Ads/admob_meteData.dart';
-import 'package:testre/FileHandling/fileHelper.dart';
-import 'package:testre/GamePage/Menue.dart';
 import 'package:testre/ShopPage/pushCoins.dart';
 import 'package:testre/ShopPage/shopFile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -935,7 +926,6 @@ class _erroTextOverlayState extends State<erroTextOverlay> {
   Widget build(BuildContext context) {
     double maxWidth = MediaQuery.of(context).size.width;
     double maxHeight = MediaQuery.of(context).size.height;
-    Globals objglobals = Globals();
     return GestureDetector(
       onTap: () => context.read<showError>().swapState(false),
       child: Container(

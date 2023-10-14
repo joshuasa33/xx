@@ -1,8 +1,4 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:testre/CharPage/CharUI.dart';
 import 'package:testre/GamePage/Menue.dart';
@@ -12,9 +8,7 @@ import '../Helper/globals.dart';
 import '../Helper/httpMetaData.dart';
 import '../ShopPage/ShopUI.dart';
 import 'StartSocket.dart';
-import 'banner.dart';
 import 'fightPage.dart';
-import 'initfragen.dart';
 
 //getDataStartGame(context);
 int passindex = 2;
@@ -39,8 +33,6 @@ class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     Globals objglobals = Globals();
-    double maxWidth = MediaQuery.of(context).size.width;
-    double maxHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
         color: objglobals.mainColor,
@@ -58,13 +50,11 @@ class _GamePageState extends State<GamePage> {
               });
             },
             controller: context.read<PageViewIndex>()._pageController,
-            children: [
-              const ShopPage(),
-              const CharPage(),
-              FightPage(
-                key: UniqueKey(),
-              ),
-              const SettingPage(),
+            children: const [
+              ShopPage(),
+              CharPage(),
+              FightPage(),
+              SettingPage(),
             ],
           ),
 

@@ -1,11 +1,7 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:testre/GamePage/initfragen.dart';
 import 'package:testre/INGAME/reskin.dart';
 import 'package:web_socket_channel/io.dart';
-
-import '../GamePage/GamePage.dart';
 
 IOWebSocketChannel? _channel;
 

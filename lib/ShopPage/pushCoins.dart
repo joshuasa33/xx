@@ -1,5 +1,4 @@
 import 'package:http/http.dart' as http;
-import 'package:http_parser/http_parser.dart' as http_parser;
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> pushCoins(String playerguid, int amount) async {
@@ -16,7 +15,7 @@ Future<void> pushCoins(String playerguid, int amount) async {
       print('Coins push failed.');
     }
   } catch (e) {
-    print("Error Pushcoins + Prob No connection:" + e.toString());
+    print("Error Pushcoins + Prob No connection:$e");
   }
 }
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:lottie/lottie.dart';
 
 class GameDone extends StatefulWidget {
@@ -17,14 +16,14 @@ class _GameDoneState extends State<GameDone> {
     double maxHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Column(children: [
-        SizedBox(
+        const SizedBox(
           height: 200,
         ),
         Container(
           width: maxWidth,
           height: maxHeight * 0.1,
           color: Colors.amber,
-          child: Center(
+          child: const Center(
             child: Text(
               "Waiting for results",
               textAlign: TextAlign.center,
@@ -41,7 +40,7 @@ class _GameDoneState extends State<GameDone> {
           child: Padding(
             padding: EdgeInsets.fromLTRB(
                 maxWidth * 0.15, maxHeight * 0.02, maxWidth * 0.15, 0),
-            child: Container(
+            child: SizedBox(
               height: maxHeight * 0.08,
               width: double.maxFinite,
               child: Lottie.asset('lib/images/97443-loading-gray.json'),
@@ -52,7 +51,7 @@ class _GameDoneState extends State<GameDone> {
           width: maxWidth,
           height: maxHeight * 0.1,
           color: Colors.amber,
-          child: Center(
+          child: const Center(
             child: Text(
               "Das Ergebnis",
               textAlign: TextAlign.center,

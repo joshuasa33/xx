@@ -1,20 +1,15 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
-import 'dart:math';
 import 'package:testre/Helper/httpMetaData.dart';
-import 'package:testre/ShopPage/shopFile.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:testre/GamePage/GamePage.dart';
 import 'package:testre/GamePage/initfragen.dart';
-import 'package:testre/Protype/gamedone.dart';
 
 import '../GamePage/fightPage.dart';
 import '../Helper/globals.dart';
@@ -121,7 +116,6 @@ class _ReSkinState extends State<ReSkin> {
       }
       //
       else {
-        Prefs prefsget = await getPrefs();
         if (mounted) {
           setState(() {
             canAnswer = false;
@@ -626,8 +620,10 @@ class _ReSkinState extends State<ReSkin> {
                 child: GestureDetector(
                   onTap: () {
                     context.read<GameFinish>().getErgebnis("");
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => GamePage()));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const GamePage()));
                     fetchMetadata(context);
                   },
                   child: Padding(
