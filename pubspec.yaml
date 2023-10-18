@@ -27,9 +27,9 @@ dependencies:
   provider: ^6.0.5
   google_fonts: ^6.1.0
   model_viewer_plus: ^1.7.0
-  babylonjs_viewer: ^1.0.1
-
-
+  webview_flutter: ^4.4.1
+  workmanager: ^0.5.2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

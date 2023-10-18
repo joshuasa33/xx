@@ -99,9 +99,7 @@ class _ReSkinState extends State<ReSkin> {
         Prefs prefsget = await getPrefs();
 
         // Update TO WS
-        // ignore: use_build_context_synchronously
         if (index < 3) {
-          // ignore: use_build_context_synchronously
           resultToWebsocket(prefsget.playerguid, richtigeAntworten.toString(),
               widget.gameguid!, context, "warte");
         }

@@ -594,7 +594,7 @@ class _ItemState extends State<Item> {
     if (widget.items.assetCategory[widget.index] == "BG") {
       price = 200;
     }
-    return Container(
+    return SizedBox(
       child: Padding(
         padding: EdgeInsets.fromLTRB(maxWidth * 0.02, maxHeight * 0.01, 0, 0),
         child: Column(
@@ -897,7 +897,6 @@ class _WaitingShopResponseState extends State<WaitingShopResponse> {
   Widget build(BuildContext context) {
     double maxWidth = MediaQuery.of(context).size.width;
     double maxHeight = MediaQuery.of(context).size.height;
-    Globals objglobals = Globals();
     return Container(
       width: maxWidth,
       height: maxHeight,

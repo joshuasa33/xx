@@ -16,7 +16,7 @@ class _BanneradState extends State<Bannerad> {
   void _loadBannerAd() {
     _bannerAd = BannerAd(
       adUnitId: widget.bannerString,
-      request: AdRequest(),
+      request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (_) {
@@ -36,11 +36,13 @@ class _BanneradState extends State<Bannerad> {
     _bannerAd.load();
   }
 
+  @override
   void initState() {
     super.initState();
     _loadBannerAd();
   }
 
+  @override
   void dispose() {
     _bannerAd.dispose(); // dispose the banner ad when the app is closed
     super.dispose();
@@ -53,7 +55,7 @@ class _BanneradState extends State<Bannerad> {
         if (_isBannerAdReady)
           Align(
             alignment: Alignment.bottomCenter,
-            child: Container(
+            child: SizedBox(
               width: _bannerAd.size.width.toDouble(),
               height: _bannerAd.size.height.toDouble(),
               child: AdWidget(ad: _bannerAd),

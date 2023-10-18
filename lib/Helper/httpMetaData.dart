@@ -48,7 +48,6 @@ Future<void> fetchMetadata(BuildContext context) async {
   try {
     int getcoins = await saveCoins(0);
     if (getcoins != 0) {
-      String playerguid = "";
       const constguid = "playerguid";
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       if (prefs.containsKey(constguid)) {
@@ -89,13 +88,13 @@ class Player {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['playername'] = this.playername;
-    data['playerguid'] = this.playerguid;
-    data['countrycode'] = this.countrycode;
-    data['operatingsystem'] = this.operatingsystem;
-    data['elo'] = this.elo;
-    data['money'] = this.money;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['playername'] = playername;
+    data['playerguid'] = playerguid;
+    data['countrycode'] = countrycode;
+    data['operatingsystem'] = operatingsystem;
+    data['elo'] = elo;
+    data['money'] = money;
     return data;
   }
 }
