@@ -7,6 +7,7 @@ import 'package:testre/FileHandling/fileHelper.dart';
 import 'package:testre/INGAME/ingame.dart';
 import 'package:testre/INGAME/reskin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:testre/ModelViewer/globalmodel.dart';
 import 'Ads/admob_meteData.dart';
 import 'GamePage/GamePage.dart';
 import 'GamePage/Menue.dart';
@@ -61,6 +62,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => BGPathEnemy()),
         ChangeNotifierProvider(create: (context) => BGPathEnemy()),
         ChangeNotifierProvider(create: (context) => enemyName()),
+        ChangeNotifierProvider(create: (context) => IsForeground()),
       ],
       child: MyApp(
         playerguid: getplayerguid,

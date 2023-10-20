@@ -50,11 +50,13 @@ class _GamePageState extends State<GamePage> {
               });
             },
             controller: context.read<PageViewIndex>()._pageController,
-            children: const [
-              ShopPage(),
-              CharPage(),
-              FightPage(),
-              SettingPage(),
+            children: [
+              const ShopPage(),
+              const CharPage(),
+              FightPage(
+                key: UniqueKey(),
+              ),
+              const SettingPage(),
             ],
           ),
 

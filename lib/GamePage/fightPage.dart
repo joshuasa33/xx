@@ -7,6 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:testre/Helper/globals.dart';
+import 'package:testre/ModelViewer/globalmodel.dart';
 import 'StartSocket.dart';
 
 class FightPage extends StatefulWidget {
@@ -133,16 +134,9 @@ class _FightPageState extends State<FightPage> {
                     fit: BoxFit.fill,
                   ),
                 ),
-                Visibility(
-                  visible: context.watch<ModelPath>().modelPath != "",
-                  child: ModelViewer(
-                    src: context.watch<ModelPath>().modelPath,
-                    alt: 'My 3D Model',
-                    cameraControls: true, // Enable camera controls
-                    disableTap: true,
-                    disablePan: true,
-                  ),
-                ),
+                const GlobalModel(
+                  isEnemy: false,
+                )
               ],
             ),
           ),

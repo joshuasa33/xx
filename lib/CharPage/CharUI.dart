@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:testre/ModelViewer/globalmodel.dart';
 
 import '../GamePage/fightPage.dart';
 import '../Helper/globals.dart';
@@ -418,22 +419,9 @@ class _GetModelViewerState extends State<GetModelViewer> {
                 ),
               ),
             ),
-            Visibility(
-              visible: context.watch<ModelPath>().modelPath != "",
-              child: SizedBox(
-                child: ModelViewer(
-                  src: context.watch<ModelPath>().modelPath,
-                  alt: 'My 3D Model',
-                  ar: false, // Enable AR mode
-                  autoRotate: false, // Enable auto-rotation
-                  cameraControls: true, // Enable camera controls
-                  disableTap: true,
-                  disablePan: true,
-                  disableZoom: true,
-                  autoPlay: false,
-                ),
-              ),
-            ),
+            const GlobalModel(
+              isEnemy: false,
+            )
           ],
         ),
       ),

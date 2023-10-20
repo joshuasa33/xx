@@ -10,6 +10,7 @@ import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:testre/GamePage/GamePage.dart';
 import 'package:testre/GamePage/initfragen.dart';
+import 'package:testre/ModelViewer/globalmodel.dart';
 
 import '../GamePage/fightPage.dart';
 import '../Helper/globals.dart';
@@ -240,16 +241,8 @@ class _ReSkinState extends State<ReSkin> {
                             SizedBox(
                               width: maxWidth * 0.35,
                               height: maxHeight * 0.14,
-                              child: Visibility(
-                                visible:
-                                    context.watch<ModelPath>().modelPath != "",
-                                child: ModelViewer(
-                                  src: context.watch<ModelPath>().modelPath,
-                                  alt: 'My 3D Model',
-                                  ar: false, // Enable AR mode
-                                  cameraControls:
-                                      false, // Enable camera controls
-                                ),
+                              child: const GlobalModel(
+                                isEnemy: true,
                               ),
                             ),
                             Padding(
@@ -296,16 +289,7 @@ class _ReSkinState extends State<ReSkin> {
                             fit: BoxFit.fill,
                           ),
                         ),
-                        SizedBox(
-                          width: maxWidth * 0.35,
-                          height: maxHeight * 0.14,
-                          child: ModelViewer(
-                            src: context.watch<ModelPathEnemy>().modelPath,
-                            alt: 'My 3D Model',
-                            ar: false, // Enable AR mode
-                            cameraControls: false, // Enable camera controls
-                          ),
-                        ),
+                        const GlobalModel(isEnemy: true),
                         Padding(
                           padding: EdgeInsets.only(top: maxHeight * 0.135),
                           child: Container(

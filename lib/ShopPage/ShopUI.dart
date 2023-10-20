@@ -9,6 +9,7 @@ import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:testre/Ads/admob_meteData.dart';
+import 'package:testre/ModelViewer/globalmodel.dart';
 import 'package:testre/ShopPage/pushCoins.dart';
 import 'package:testre/ShopPage/shopFile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,7 +35,11 @@ class _ShopPageState extends State<ShopPage> {
   }
 
   void getShopData(BuildContext context) async {
-    await getItems(context);
+    try {
+      await getItems(context);
+    } catch (E) {
+      debugPrint("ShopPageError$E");
+    }
   }
 
   @override
@@ -117,46 +122,6 @@ class _ShopPageState extends State<ShopPage> {
                   ),
                 ),
               ],
-            ),
-          ),
-        ),
-        //ad
-        //Ad
-        Visibility(
-          visible: context.watch<AdStateProvider>().isloaded,
-          child: GestureDetector(
-            onTap: () {
-              showRewardedAd(context,
-                  AdHelper.getRewardedAdID(WhichRewardedAD.rewardedCoins));
-            },
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(maxWidth * 0.7, 0, 0, 0),
-              child: Container(
-                color: objglobals.fourthColor,
-                width: maxWidth * 0.3,
-                height: maxHeight * 0.04,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      height: maxHeight * 0.04,
-                      width: maxWidth * 0.11,
-                      child: Image.asset("lib/Icons/film.png"),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: maxWidth * 0.02),
-                      child: AutoSizeText(
-                        "+20",
-                        style: GoogleFonts.getFont(
-                          'Orbitron', // Replace with your desired Google Font
-                          textStyle: const TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
             ),
           ),
         ),
@@ -776,13 +741,17 @@ void popup(BuildContext context, double maxHeight, double maxWidth,
                         //color: Colors.amber,
                         width: maxWidth,
                         height: maxHeight * 0.43,
-                        child: ModelViewer(
-                          src: assetLink,
-                          alt: 'My 3D Model',
-                          autoRotate: true, // Enable auto-rotation
-                          rotationPerSecond: "90deg",
-                          autoRotateDelay: 0,
-                          cameraControls: false, // Enable camera controls
+                        child: Visibility(
+                          visible: context.watch<ModelPath>().modelPath != "" &&
+                              context.watch<IsForeground>().appIsForeground,
+                          child: ModelViewer(
+                            src: assetLink,
+                            alt: 'My 3D Model',
+                            autoRotate: true, // Enable auto-rotation
+                            rotationPerSecond: "120deg",
+                            autoRotateDelay: 0,
+                            cameraControls: false, // Enable camera controls
+                          ),
                         ),
                       ),
                     ),
